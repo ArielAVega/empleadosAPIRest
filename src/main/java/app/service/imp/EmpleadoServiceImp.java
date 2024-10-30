@@ -42,6 +42,17 @@ public class EmpleadoServiceImp implements IEmpleadoService{
 	public void eliminarEmpleado(Long id) {
 		empleadoRepository.deleteById(id);
 	}
+	@Override
+	public EmpleadoDTO actualizarEmpleado(Long id, EmpleadoDTO empleadoDTO) {
+		var empleadoExistente = empleadoRepository.findById(id)
+				.orElseThrow(()->new RuntimeException("Empleado no encontrado"));
+		empleadoExistente.setApellido(empleadoDTO.getApellido());
+		empleadoExistente.setArea(empleadoDTO.getArea());
+		empleadoExistente.setFechaNacimiento(empleadoDTO.getFechaNacimiento());
+		empleadoExistente.setNombre(empleadoDTO.getNombre());
+		
+		return empleadoMapper.toDTO(empleadoRepository.save(empleadoExistente));
+	}
 
 	
 }

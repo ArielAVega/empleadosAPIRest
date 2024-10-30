@@ -11,4 +11,5 @@ public interface IEmpleadoService {
 	List<EmpleadoDTO> buscarPorArea(String area);
 	EmpleadoDTO guardarEmpleado(EmpleadoDTO empleadoDTO);
 	void eliminarEmpleado(Long id);
+	EmpleadoDTO actualizarEmpleado(Long id, EmpleadoDTO empleadoDTO);
 }
